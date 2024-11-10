@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Data Warga</title>
+    <style>
+        form {
+            align-items: center;
+            align-content: center;
+            justify-content: center;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            padding-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Data Warga</h2>
+    <form action="/edit/{{ warga['id'] }}" method="POST">
+        <label for="nama">Nama Lengkap</label>
+        <input type="text" id="nama" name="nama_lengkap" value="{{ warga['nama_lengkap'] }}" required>
+
+        <label for="tanggal-lahir">Tanggal Lahir (DD/MM/YYYY)</label>
+        <input type="text" id="tanggal-lahir" name="tanggal_lahir" value="{{ warga['tanggal_lahir'] }}" required>
+
+        <label for="jenis-kelamin">Jenis Kelamin</label>
+        <select id="jenis-kelamin" name="jenis_kelamin" required>
+            <option value="P" {% if warga['jenis_kelamin'] == 'P' %}selected{% endif %}>Perempuan</option>
+            <option value="L" {% if warga['jenis_kelamin'] == 'L' %}selected{% endif %}>Laki-laki</option>
+        </select>
+
+        <label for="alamat">Alamat</label>
+        <input type="text" id="alamat" name="alamat" value="{{ warga['alamat'] }}" required>
+
+        <label for="rt">RT</label>
+        <input type="number" id="rt" name="rt" value="{{ warga['rt'] }}" required>
+
+        <label for="rw">RW</label>
+        <input type="number" id="rw" name="rw" value="{{ warga['rw'] }}" required>
+
+        <label for="status-tempat-tinggal">Status Tempat Tinggal</label>
+        <select id="status-tempat-tinggal" name="status_tempat_tinggal" required>
+            <option value="Tetap" {% if warga['status_tempat_tinggal'] == 'Tetap' %}selected{% endif %}>Tetap</option>
+            <option value="Sewa" {% if warga['status_tempat_tinggal'] == 'Sewa' %}selected{% endif %}>Sewa</option>
+        </select>
+
+        <button type="submit">Update Data</button>
+    </form>
+</body>
+</html>
